@@ -18,13 +18,11 @@ class PostController extends Controller
      */
     public function index(Request $request)
     {
-//        $posts = $request->user()->posts()->with(['user'])->get();
+        $posts = $request->user()->posts()->with(['user'])->get();
 
-        dd(Post::where('created_at', '<', Carbon::now())->get());
-        $post = Post::where('created_at', '<', Carbon::now())->first();
+//        $post = Post::where('created_at', '<', Carbon::now())->first();
 
-        return new PostResource($post);
-//        return PostResource::collection($posts);
+        return PostResource::collection($posts);
     }
 
     /**
